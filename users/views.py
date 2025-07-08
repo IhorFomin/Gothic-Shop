@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from .forms import UserLoginForm, UserRegistrationForm, ProfileForm
+from .forms import UserLoginForm, UserRegistrationForm, \
+    ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Prefetch
 from orders.models import Order, OrderItem
@@ -18,7 +19,7 @@ def login(request):
                                      password=password)
             if user:
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('main:product'))
+                return HttpResponseRedirect(reverse('main:product_list'))
     else:
         form = UserLoginForm()
     return render(request, 'users/login.html', {'form': form})
@@ -35,6 +36,8 @@ def registration(request):
                 request, f'{user.username}, Successful Registration'
             )
             return HttpResponseRedirect(reverse('user:login'))
+        else:
+            print(form.errors)
     else:
         form = UserRegistrationForm()
     return render(request, 'users/registration.html')
@@ -43,15 +46,15 @@ def registration(request):
 @login_required
 def profile(request):
     if request.method == 'POST':
-        form = ProfileForm(data=request.POST, isinstance=request.user,
+        form = ProfileForm(data=request.POST, instance=request.user,
                            files=request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile was changed')
             return HttpResponseRedirect(reverse('user:profile'))
     else:
-        form = ProfileForm(isinstance=request.user)
-
+        form = ProfileForm(instance=request.user)
+    
     orders = Order.objects.filter(user=request.user).prefetch_related(
         Prefetch(
             'items',
