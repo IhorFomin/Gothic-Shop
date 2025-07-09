@@ -1,6 +1,7 @@
 from django.db import models
 from main.models import Product
 from users.models import User
+from django.conf import settings
 
 
 class Order(models.Model):

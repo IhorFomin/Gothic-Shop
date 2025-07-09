@@ -26,7 +26,7 @@ def payment_process(request):
             'client_reference_id': order.id,
             'success_url': success_url,
             'cancel_url': cancel_url,
-            'line_items': []
+            'line_items': [],
         }
         for item in order.items.all():
             discounted_price = item.product.sell_price()
