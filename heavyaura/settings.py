@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'django-insecure-_l)-5r(6_!anx9yyo^0=mpmgxlo*i=4bproztouo@nd55qugf0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -143,8 +143,8 @@ CART_SESSION_ID = 'cart'
 
 AUTH_USER_MODEL = 'users.User'
 
-STRIPE_PUBLISHABLE_KEY = ''
-STRIPE_SECRET_KEY = ''
-STRIPE_API_VERSION = ''
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51RiYKr4gNQN0A8O5seBwmroabiCSDkpGoQJps3PhLsPc8yhKiR4A6HxWtvO51r0g2awfVUAFZcQtJ3E7j34PljYn005EiuD2pt'
+STRIPE_SECRET_KEY = 'sk_test_51RiYKr4gNQN0A8O5B0WoiVVl83tvVKUhnY8FBkkkzO1EqGru2m1nwCH9EBLJHNlZGT3rHpq5xPgujJdVtdM0wKJ100uEXendNQ'
+STRIPE_API_VERSION = '2022-08-01'
 
-STRIPE_WEBHOOK_SECRET = ''
+STRIPE_WEBHOOK_SECRET = 'whsec_e8b0bf2171d21eb7ea463b824434184d49424860b2d368f9b71ef5041d7f1d97'
